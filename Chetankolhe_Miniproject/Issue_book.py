@@ -7,8 +7,9 @@ def Issue_book(book_id,stud_id):
     MySql_Conn.mycursor.execute(check_b_id)
     myresult_id = MySql_Conn.mycursor.fetchall()
     
+    book_ids = [row[0] for row in myresult_id]
     #here checking if the book_id entered is in our data base or not
-    if book_id in myresult_id:
+    if book_id in book_ids:
     
         now = datetime.now()
         issue_date = now.strftime('%Y-%m-%d %H:%M:%S')

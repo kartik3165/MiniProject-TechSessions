@@ -48,14 +48,16 @@ while(True):
         check_s_id = "SELECT stud_id from student"
         MySql_Conn.mycursor.execute(check_s_id)
         myresult_id = MySql_Conn.mycursor.fetchall()
+        book_ids = [row[0] for row in myresult_id]
         
         #here checking if the stud_id entered is in our data base or not
-        if student in myresult_id:
+        if student in book_ids:
             
             #just calling the function in the file name Student_DB_Operations
             Student_DB_Operations.update_student(student)
         
         else:
+            
             print("\nStudent Not Exisist !!\nREcheck Your Entered ID \n")
         
         
@@ -66,14 +68,19 @@ while(True):
         check_s_id = "SELECT stud_id from student"
         MySql_Conn.mycursor.execute(check_s_id)
         myresult_id = MySql_Conn.mycursor.fetchall()
+        book_ids = [row[0] for row in myresult_id]
         
         #here checking if the stud_id entered is in our data base or not
-        if stud_id in myresult_id:
+        if stud_id in book_ids:
+            
             Student_DB_Operations.delete_student(stud_id)
+            
         else:
+            
             print("\nStudent Not Exisist !!\nREcheck Your Entered ID \n")
         
     elif(choice == 6):
+        
          #just calling the function in file insertion_of_book_in_db
         list_of_available_books.display_available_books()
         
@@ -85,6 +92,7 @@ while(True):
         Issue_book.Issue_book(book_id,stud_id)
 
     elif(choice == 8):
+        
         book_id = int(input("Enter the Book Id "))
         stud_id = input("\nEnter the id of student:- ")
         #calling the Function in return_book file
@@ -99,15 +107,19 @@ while(True):
         check_s_id = "SELECT stud_id from student"
         MySql_Conn.mycursor.execute(check_s_id)
         myresult_id = MySql_Conn.mycursor.fetchall()
+        book_ids = [row[0] for row in myresult_id]
         
         #here checking if the stud_id entered is in our data base or not
-        if stud_id in myresult_id:
+        if stud_id in book_ids:
+            
             #calling the Function in penalty_payment file 
             penalty_payment.penalty_pay(stud_id)
+            
         else:
             print("\nStudent Not Exisist !!\nREcheck Your Entered ID \n")
         
     elif(choice == 10):
+        
         print("Thankyou !!!")
         break
     
